@@ -64,6 +64,7 @@ export default class ProductHome extends Component {
           }
 
       getProducts=async(pageNum)=>{
+          console.log(111)
         const result = await reqproducts(pageNum,2)
         console.log(result) 
         if(result.status===0){
@@ -82,7 +83,7 @@ export default class ProductHome extends Component {
     componentWillMount(){
       this.initColumns()
     }
-    compontentDidMount(){
+    componentDidMount(){
       this.getProducts(1)//获取第一页显示
     }
 

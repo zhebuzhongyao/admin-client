@@ -90,7 +90,9 @@ export const addcategory=(categoryName)=>ajax({
 
 //修改商品信息
 export const updatecategory=({categoryId,categoryName})=>ajax.post('/manage/category/update',{categoryId:categoryId,categoryName:categoryName});
-console.log(updatecategory)
+
+
+
 //获取商品分页列表
 export const reqproducts=(pageNum,pageSize)=>ajax('/manage/product/list',{
   params:{
