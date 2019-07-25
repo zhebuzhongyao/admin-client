@@ -120,7 +120,21 @@ export default class Category extends Component {
     const category=this.category || {}
 
     return (
-      <Card extra={<Button type='primary' onClick={() => { this.setState({ showstatus: 1 }) }}><Icon type='plus' />添加</Button>} style={{ width: '100%' }}>
+      //card右上角添加按钮的结构
+      <Card style={{ width: '100%' }} 
+            extra={
+              <Button 
+                type='primary' 
+                onClick={() => {
+                  this.category=null//为了解决修改之后再次添加，将输入框里的内容清掉
+                  this.setState({ showstatus: 1 })}
+                }>
+                <Icon type='plus' />
+                    添加
+              </Button>
+              }     
+      >
+        {/* 表格部分 */}
         <Table
           columns={this.columns}
           loading={loading}
@@ -129,6 +143,7 @@ export default class Category extends Component {
           bordered
           pagination={{ defaultPageSize: 6, showQuickJumper: true }} //分页配置项
         />
+        {/* 修改分类的弹框 */}
         <Modal
           title={showstatus === 1 ? '添加分类' : '修改分类'}
           visible={showstatus !== 0}

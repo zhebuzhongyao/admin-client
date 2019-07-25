@@ -9,6 +9,7 @@ import jsonp from 'jsonp'
 import {message} from 'antd'
 
 
+
 // const BASE=''
 
 
@@ -100,8 +101,44 @@ export const reqproducts=(pageNum,pageSize)=>ajax('/manage/product/list',{
     pageSize
   }
 })
-console.log(reqproducts)
+
+//根据name/desc搜索产品分页列表
+export const reqSearchproducts=({
+  pageNum,pageSize,searchName,searchType
+})=>ajax('/manage/product/search',{
+  params:{
+    pageNum,
+    pageSize,
+    [searchType]:searchName,
+  }
+})
+
+//对商品进行上架和下架处理的接口
+export const reqUpdateStatus=(productId,status)=>
+  ajax('manage/product/updateStatus',{
+    method:'POST',
+    data:{
+      productId,
+      status
+    }
+  })
 
 
+// export const reqUpdateStatus=()=>{ajax.post('manage/product/updateStatus',{productId,status})}
 
+//删除图片的接口
+export const reqDeleteImg=(name)=>{return ajax.post('/manage/img/delete',{name})}
+
+//添加或更新商品
+export const reqAddUpdateProduct=(product)=>{
+  return ajax.post(
+    '/manage/product/'+(product._id?'update':'add'),
+  product
+)}
+
+//添加角色
+export const reqaddRole=(roleName)=>{return ajax.post('/manage/role/add',{roleName})}
+
+//获取角色列表
+export const reqRoleList=()=>{return ajax('/manage/role/list')} 
         

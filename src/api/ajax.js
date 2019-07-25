@@ -23,7 +23,7 @@ axios.interceptors.request.use(function (config) {
   // 添加一个响应拦截器
   //为了处理数据和错误信息
 axios.interceptors.response.use(function (response) {
-  console.log(response.data)
+  // console.log(response.data)
     return response.data;
 
   
